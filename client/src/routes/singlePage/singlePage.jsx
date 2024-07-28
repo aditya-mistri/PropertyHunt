@@ -6,6 +6,7 @@ import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+import Chat from "../../components/chat/Chat"; // Import Chat component if needed
 
 function SinglePage() {
   const post = useLoaderData();
@@ -16,8 +17,9 @@ function SinglePage() {
   const handleSave = async () => {
     if (!currentUser) {
       navigate("/login");
+      return;
     }
-    // AFTER REACT 19 UPDATE TO USEOPTIMISTIK HOOK
+
     setSaved((prev) => !prev);
     try {
       await apiRequest.post("/users/save", { postId: post.id });
@@ -26,6 +28,8 @@ function SinglePage() {
       setSaved((prev) => !prev);
     }
   };
+
+  const isPostOwner = currentUser?.id === post.user.id;
 
   return (
     <div className="singlePage">
@@ -139,10 +143,12 @@ function SinglePage() {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button>
-              <img src="/chat.png" alt="" />
-              Send a Message
-            </button>
+            {!isPostOwner && (
+              <button>
+                <img src="/chat.png" alt="" />
+                Send a Message
+              </button>
+            )}
             <button
               onClick={handleSave}
               style={{

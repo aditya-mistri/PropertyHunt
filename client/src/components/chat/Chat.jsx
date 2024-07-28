@@ -96,39 +96,30 @@ function Chat({ chats }) {
         ))}
       </div>
       {chat && (
-        <div className="chatBox">
-          <div className="top">
-            <div className="user">
-              <img src={chat.receiver.avatar || "noavatar.jpg"} alt="" />
-              {chat.receiver.username}
-            </div>
-            <span className="close" onClick={() => setChat(null)}>
-              X
-            </span>
+        <div className="chatbox">
+          <div className="info">
+            <img src={chat.receiver.avatar || "/noavatar.jpg"} alt="" />
+            <span>{chat.receiver.username}</span>
           </div>
-          <div className="center">
-            {chat.messages.map((message) => (
+          <div className="messages">
+            {chat.messages.map((m) => (
               <div
-                className="chatMessage"
+                className="message"
+                key={m.id}
                 style={{
-                  alignSelf:
-                    message.userId === currentUser.id
-                      ? "flex-end"
-                      : "flex-start",
-                  textAlign:
-                    message.userId === currentUser.id ? "right" : "left",
+                  backgroundColor:
+                    m.userId === currentUser.id ? "rgb(245, 241, 241)" : "white",
                 }}
-                key={message.id}
               >
-                <p>{message.text}</p>
-                <span>{format(message.createdAt)}</span>
+                <p>{m.text}</p>
+                <span>{format(m.createdAt)}</span>
               </div>
             ))}
-            <div ref={messageEndRef}></div>
+            <div ref={messageEndRef} />
           </div>
-          <form onSubmit={handleSubmit} className="bottom">
-            <textarea name="text"></textarea>
-            <button>Send</button>
+          <form onSubmit={handleSubmit}>
+            <textarea name="text" placeholder="Write a message..." />
+            <button type="submit">Send</button>
           </form>
         </div>
       )}
