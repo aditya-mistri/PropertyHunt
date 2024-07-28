@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "build": "prisma generate && npx prisma db push && npm install --prefix ../client && npm run build --prefix ../client",
+    "build": "prisma generate && npx prisma db push && npm install --prefix ../client --production=false && npm run build --prefix ../client",
     "postinstall": "prisma generate"
   },
   "keywords": [],
