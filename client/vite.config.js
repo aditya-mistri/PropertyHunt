@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/socket.io': {
-        target: 'http://localhost:8800',
+        target: 'https://propertyyhuntt.onrender.com',
         ws: true,
         changeOrigin: true,
         configure: (proxy, _options) => {
