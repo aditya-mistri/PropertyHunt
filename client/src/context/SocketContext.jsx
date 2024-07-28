@@ -9,7 +9,7 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const SOCKET_URL = 'http://localhost:8800'; // Hardcode for debugging
+    const SOCKET_URL = 'https://propertyyhuntt.onrender.com'; // Hardcode for debugging
     console.log(`Attempting to connect to Socket.IO server at: ${SOCKET_URL}`);
 
     const newSocket = io(SOCKET_URL, {
