@@ -50,15 +50,3 @@
 - **Responsive Design:** The application is fully responsive, ensuring a seamless experience on both desktop and mobile devices.
 - **Backend Integration:** Fully integrated backend handling data storage and retrieval, authentication, and business logic.
 
-## How to Run the Project
-### Prerequisites
-- Node.js
-- MongoDB
-- Render.com account for hosting
-
-### Setup Instructions
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/propertyhunt.git
-   cd propertyhunt
-```
